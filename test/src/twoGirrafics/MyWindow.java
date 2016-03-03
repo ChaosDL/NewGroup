@@ -11,7 +11,8 @@ public class MyWindow extends JFrame implements KeyListener{
 	int width = 1250;
 	int height = 800;
 	Sun okamiCircle;
-	BufferedImage landscape;
+	Sun rays;
+	//BufferedImage landscape;
 	boolean itemPickedUp;
 	public static void main(String[] args) {
 		new MyWindow();
@@ -19,9 +20,10 @@ public class MyWindow extends JFrame implements KeyListener{
 	
 	public MyWindow(){
 		//JFrame methods
-		okamiCircle = new Sun("Red", "/images/okami.png", 20, 20, 420, 420);
-		landscape = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = (Graphics2D)landscape.getGraphics();
+		okamiCircle = new Sun("Red", "/images/okami.png", 0, 0, 420, 420);
+		//landscape = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		//Graphics2D g2 = (Graphics2D)landscape.getGraphics();
+		rays = new Sun("Rays", "/images/rays.png", 0, 0, 1250, 800);
 		itemPickedUp = false;
 		setVisible(true);
 		setSize(width,height);
@@ -62,10 +64,14 @@ public class MyWindow extends JFrame implements KeyListener{
 //			if(x>=width)x=width;
 //		}
 //	
-		Sun rays = new Sun("Rays", "/images/rays.png", 20, 20, 1250, 800);
-		if((Math.abs(okamiCircle.getX() + 210 - rays.getX()+400)) + (Math.abs(okamiCircle.getY() + 210 - rays.getY()+625)) < 10){
+		
+//		if((Math.abs(okamiCircle.getX() + 210 - rays.getX()+400)) + (Math.abs(okamiCircle.getY() + 210 - rays.getY()+625)) < 10){
+//			itemPickedUp = true;
+//		}
+		if(okamiCircle.getY() > 190 && okamiCircle.getX() > 390){
 			itemPickedUp = true;
 		}
+		//make it rotate
 		if(!itemPickedUp){
 			g2.drawImage(rays.getImage(), rays.getX(), rays.getY(), null);
 		}
